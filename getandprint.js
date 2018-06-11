@@ -4,14 +4,17 @@ function getAndPrintHTMLChunks() {
         host: 'sytantris.github.io',
         path: '/http-examples/step1.html'
     };
-    
+
     https.get(requestOptions, function (stream) {
         stream.setEncoding('utf8');
         stream.on('data', function (data) {
             console.log('Chunk received', data, +'\n');
         });
-        return https;
-    });
+        stream.on('end', function () {
+            console.log("stream has ended")
+            return https;
+        });
 
-};
+    });
+}
 console.log(getAndPrintHTMLChunks());
