@@ -13,7 +13,11 @@ function getAndPrintHTML() {
             pie += data;
             console.log(pie);
         });
-    })
+        stream.on('end', function () {
+            console.log("stream has ended")
+        })
 
+    })
 }
+
 getAndPrintHTML()
